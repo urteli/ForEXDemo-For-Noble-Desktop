@@ -8,5 +8,8 @@ target 'FOREXDemo' do
   # Pods for FOREXDemo.
 
   pod 'Alamofire'
+  pod 'Firebase/Core'
+  
+
 
 end
