@@ -8,12 +8,15 @@
 
 import UIKit
 import Alamofire
+import Firebase
 
 class SymbolTableViewController: UIViewController, UITableViewDelegate, UISearchResultsUpdating {
-    
-    
-    
     //,UITableViewDataSource {
+    
+    lazy var db = Firestore.firestore()
+    
+//    var ref: DatabaseReference!
+//    ref = Database.database().reference()
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -40,7 +43,9 @@ class SymbolTableViewController: UIViewController, UITableViewDelegate, UISearch
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SymbolTableViewCell")
+        db.collection("example-collection").addDocument(data:["Example2" : "1231231s]"])
+        
+// this breaks it tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SymbolTableViewCell")
         
         let urlString = "https://forex.1forge.com/1.0.3/symbols?api_key=scKdc5njprJwBjonYn417rDniGrve9aM"
         //"https://forex.1forge.com/1.0.3/quotes?pairs=EURUSD,GBPJPY,AUDUSD&api_key=scKdc5njprJwBjonYn417rDniGrve9aM"
@@ -95,9 +100,9 @@ extension SymbolTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SymbolTableViewCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SymbolTableViewCell", for: indexPath) as! SymbolTableViewCell
         //old cell.textLabel?.text = symbols[indexPath.row]
-        cell.textLabel?.text = searchController.isFiltering ? filterdSymbols[indexPath.row] : symbols[indexPath.row]
+        cell.titleLabel.text = searchController.isFiltering ? filterdSymbols[indexPath.row] : symbols[indexPath.row]
         cell.selectionStyle = .none
         let cellIsSelected = tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false
         cell.accessoryType = cellIsSelected ? .checkmark : .none

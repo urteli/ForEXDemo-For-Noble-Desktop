@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0D346E7722341C3C005A53EA /* UISearchControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D346E7622341C3C005A53EA /* UISearchControllerExtensions.swift */; };
 		0D346E792234425F005A53EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D346E782234425F005A53EA /* GoogleService-Info.plist */; };
+		0D346E7B223451C6005A53EA /* SymbolTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D346E7A223451C6005A53EA /* SymbolTableViewCell.swift */; };
 		0D56FAEF222B097C00C73993 /* SymbolDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D56FAEE222B097C00C73993 /* SymbolDetailViewController.swift */; };
 		0D56FAF3222B16AC00C73993 /* SymbolDetailTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D56FAF2222B16AC00C73993 /* SymbolDetailTableHeaderView.swift */; };
 		0D56FAF5222B174000C73993 /* SymbolDetailTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D56FAF4222B174000C73993 /* SymbolDetailTableHeaderView.xib */; };
@@ -25,6 +26,7 @@
 		04B38A4DA733E45F20C58BCD /* Pods-FOREXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FOREXDemo.release.xcconfig"; path = "Target Support Files/Pods-FOREXDemo/Pods-FOREXDemo.release.xcconfig"; sourceTree = "<group>"; };
 		0D346E7622341C3C005A53EA /* UISearchControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchControllerExtensions.swift; sourceTree = "<group>"; };
 		0D346E782234425F005A53EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0D346E7A223451C6005A53EA /* SymbolTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolTableViewCell.swift; sourceTree = "<group>"; };
 		0D56FAEE222B097C00C73993 /* SymbolDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolDetailViewController.swift; sourceTree = "<group>"; };
 		0D56FAF2222B16AC00C73993 /* SymbolDetailTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolDetailTableHeaderView.swift; sourceTree = "<group>"; };
 		0D56FAF4222B174000C73993 /* SymbolDetailTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SymbolDetailTableHeaderView.xib; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				0D56FAF6222B2FB300C73993 /* CurrencyPairTableViewCell.swift */,
 				0D346E7622341C3C005A53EA /* UISearchControllerExtensions.swift */,
 				0D346E782234425F005A53EA /* GoogleService-Info.plist */,
+				0D346E7A223451C6005A53EA /* SymbolTableViewCell.swift */,
 			);
 			path = FOREXDemo;
 			sourceTree = "<group>";
@@ -209,7 +212,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-FOREXDemo/Pods-FOREXDemo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -217,7 +225,12 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +250,7 @@
 				0D56FAF7222B2FB300C73993 /* CurrencyPairTableViewCell.swift in Sources */,
 				0D346E7722341C3C005A53EA /* UISearchControllerExtensions.swift in Sources */,
 				0D56FAEF222B097C00C73993 /* SymbolDetailViewController.swift in Sources */,
+				0D346E7B223451C6005A53EA /* SymbolTableViewCell.swift in Sources */,
 				0D56FAF3222B16AC00C73993 /* SymbolDetailTableHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
