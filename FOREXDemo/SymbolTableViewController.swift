@@ -7,7 +7,11 @@
 //
 
 /*
- HomeWork for next week show two tabs on top show favorites symbols in second tab
+ HomeWork for next week show two tabs on bottom show favorites symbols in second tab
+ add login to firebase
+ 
+left tab bar NO favorites | right tab bar * Favorites
+ bonus add firebase login
 */
 
 import UIKit
