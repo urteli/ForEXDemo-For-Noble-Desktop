@@ -35,8 +35,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zO4-kn-YZa">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zO4-kn-YZa">
                                                     <rect key="frame" x="311" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="favoriteSwitchValueChanged:" destination="fRh-2e-fR5" eventType="valueChanged" id="808-Yb-nBM"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -46,7 +49,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="favoriteSwitch" destination="zO4-kn-YZa" id="I6M-1u-PC4"/>
+                                            <outlet property="favoriteSwitch" destination="zO4-kn-YZa" id="yLB-gn-mpL"/>
                                             <outlet property="titleLabel" destination="8jR-vx-GEQ" id="uua-Hf-QTP"/>
                                         </connections>
                                     </tableViewCell>

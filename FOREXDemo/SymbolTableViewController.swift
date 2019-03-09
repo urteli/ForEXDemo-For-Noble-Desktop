@@ -10,11 +10,14 @@ import UIKit
 import Alamofire
 import Firebase
 
-class SymbolTableViewController: UIViewController, UITableViewDelegate, UISearchResultsUpdating {
+class SymbolTableViewController: UIViewController, UITableViewDelegate, UISearchResultsUpdating, SymbolTableViewCellDelegate {
+    
+    
     //,UITableViewDataSource {
+
     
     lazy var db = Firestore.firestore()
-    var favoritesData: [QueryDocumentSnapshot] = []  //firebase requirements
+    var favoritesData: [String: Bool] = [:]  //firebase requirements
 //    var ref: DatabaseReference!
 //    ref = Database.database().reference()
     
@@ -45,10 +48,13 @@ class SymbolTableViewController: UIViewController, UITableViewDelegate, UISearch
         
         //db.collection("example-collection").addDocument(data:["Example2" : "1231231s]"])
         
-        db.collection("favorites").addDocument(data: ["BCHDSH" : true, "USDCAD": false])
+ //       db.collection("favorites").addDocument(data: ["BCHDSH" : true, "USDCAD": false])
         
-        db.collection("favorites").addSnapshotListener { (snapshot, error) in
-            self.favoritesData = snapshot?.documents ?? []
+        //db.collection("favorites").addSnapshotListener { (snapshot, error) in
+        //    self.favoritesData = snapshot?.documents ?? []
+        
+        db.collection("favorites").document("currentUser").addSnapshotListener {(snapshot, error) in
+            self.favoritesData = snapshot?.data() as? [String:Bool] ?? [:]
             self.tableView.reloadData()
             
         }
@@ -98,6 +104,7 @@ class SymbolTableViewController: UIViewController, UITableViewDelegate, UISearch
     
     
     
+    
 }
 
 
@@ -112,10 +119,8 @@ extension SymbolTableViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SymbolTableViewCell", for: indexPath) as! SymbolTableViewCell
         let symbol: String = searchController.isFiltering ? filterdSymbols[indexPath.row] : symbols[indexPath.row]
         cell.titleLabel.text = symbol
-        cell.favoriteSwitch.isOn = favoritesData.contains {(snapshot) -> Bool in
-            return (snapshot[symbol] as? Bool) ?? false == true
-        }
-        
+        cell.favoriteSwitch.isOn = favoritesData[symbol] ?? false
+        cell.delegate = self
         //old cell.textLabel?.text = symbols[indexPath.row]
         //cell.titleLabel.text = searchController.isFiltering ? filterdSymbols[indexPath.row] : symbols[indexPath.row]
         cell.selectionStyle = .none
@@ -147,6 +152,14 @@ extension SymbolTableViewController: UITableViewDataSource {
             return symbol.contains(searchText.uppercased())
         })
         tableView.reloadData()
+    }
+    
+    func symbolTableViewCellValueDidChange(_ cell: SymbolTableViewCell) {
+        let symbol = cell.titleLabel.text!
+        let value = cell.favoriteSwitch.isOn
+        favoritesData[symbol] = value
+        db.collection("favorites").document("currentUser").updateData(favoritesData)
+        
     }
     
 }

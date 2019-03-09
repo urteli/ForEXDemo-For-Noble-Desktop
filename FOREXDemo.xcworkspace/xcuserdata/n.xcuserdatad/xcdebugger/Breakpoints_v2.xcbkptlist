@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FOREXDemo/SymbolTableViewController.swift"
-            timestampString = "573859060.237112"
+            timestampString = "573862168.690042"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "SymbolTableViewController"
             landmarkType = "3">
          </BreakpointContent>
