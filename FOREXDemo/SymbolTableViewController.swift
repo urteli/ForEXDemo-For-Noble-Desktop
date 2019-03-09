@@ -14,7 +14,7 @@ class SymbolTableViewController: UIViewController, UITableViewDelegate, UISearch
     //,UITableViewDataSource {
     
     lazy var db = Firestore.firestore()
-    
+    var favoritesData: [QueryDocumentSnapshot] = []  //firebase requirements
 //    var ref: DatabaseReference!
 //    ref = Database.database().reference()
     
@@ -43,7 +43,16 @@ class SymbolTableViewController: UIViewController, UITableViewDelegate, UISearch
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
-        db.collection("example-collection").addDocument(data:["Example2" : "1231231s]"])
+        //db.collection("example-collection").addDocument(data:["Example2" : "1231231s]"])
+        
+        db.collection("favorites").addDocument(data: ["BCHDSH" : true, "USDCAD": false])
+        
+        db.collection("favorites").addSnapshotListener { (snapshot, error) in
+            self.favoritesData = snapshot?.documents ?? []
+            self.tableView.reloadData()
+            
+        }
+        
         
 // this breaks it tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SymbolTableViewCell")
         
@@ -101,8 +110,14 @@ extension SymbolTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SymbolTableViewCell", for: indexPath) as! SymbolTableViewCell
+        let symbol: String = searchController.isFiltering ? filterdSymbols[indexPath.row] : symbols[indexPath.row]
+        cell.titleLabel.text = symbol
+        cell.favoriteSwitch.isOn = favoritesData.contains {(snapshot) -> Bool in
+            return (snapshot[symbol] as? Bool) ?? false == true
+        }
+        
         //old cell.textLabel?.text = symbols[indexPath.row]
-        cell.titleLabel.text = searchController.isFiltering ? filterdSymbols[indexPath.row] : symbols[indexPath.row]
+        //cell.titleLabel.text = searchController.isFiltering ? filterdSymbols[indexPath.row] : symbols[indexPath.row]
         cell.selectionStyle = .none
         let cellIsSelected = tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false
         cell.accessoryType = cellIsSelected ? .checkmark : .none
